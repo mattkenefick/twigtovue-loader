@@ -1,2 +1,2 @@
 
-module.exports = require("./build/loader");
+module.exports = require('./build/loader');
