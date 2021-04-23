@@ -1,35 +1,31 @@
 {
-  "name": "@jfrk/twig-loader",
-  "version": "1.1.0",
-  "description": "Webpack loader for compiling twig.js templates",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha -R spec"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jfrk/twig-loader.git"
-  },
-  "author": "Mathieu Maes @ Zimmo.be",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/zimmo-be/twig-loader/issues"
-  },
-  "homepage": "https://github.com/zimmo-be/twig-loader#readme",
-  "peerDependencies": {
-    "twig": "~1.15.2"
-  },
-  "dependencies": {
-    "hasha": "^3.0.0",
-    "loader-utils": "^1.1.0",
-    "map-cache": "^0.2.2",
-    "schema-utils": "^0.4.5",
-    "twig": "^1.13.3",
-    "underscore": "^1.11.0"
-  },
-  "devDependencies": {
-    "mocha": "*",
-    "prettier": "^1.19.1",
-    "should": "*"
-  }
+    "name": "mattkenefick/twigtovue-loader",
+    "version": "0.1.0",
+    "description": "Webpack loader for compiling twig.js templates into Vue files",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "test": "mocha -R spec"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mattkenefick/twigtovue-loader.git"
+    },
+    "peerDependencies": {
+        "twig": "~1.15.2"
+    },
+    "dependencies": {
+        "hasha": "^3.0.0",
+        "loader-utils": "^1.1.0",
+        "map-cache": "^0.2.2",
+        "schema-utils": "^0.4.5",
+        "twig": "~1.15.2",
+        "underscore": "^1.11.0"
+    },
+    "devDependencies": {
+        "mocha": "*",
+        "prettier": "^1.19.1",
+        "should": "*",
+        "twigtovuejs": "github:mattkenefick/twigtovuejs"
+    }
 }
