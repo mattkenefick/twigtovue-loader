@@ -5,18 +5,21 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function (source, filepath) {
-    // @urgent, remove me. Babel wouldn't parse the require above
-    var require = {};
-
     var module = this === undefined ? false : true;
-    var path = require.resolve(module ? this.resource : filepath || ''),
-        allowInlineIncludes = true,
+    filepath = filepath || this.resource;
+    var path = module ? this.resource : filepath || '',
+
+    // var path = require.resolve(module ? this.resource : (filepath || '')),
+    allowInlineIncludes = true,
         id = (0, _hasha2.default)(path),
-        options = module ? (0, _loaderUtils.getOptions)(this) : {},
+        options = module ? (0, _loaderUtils.getOptions)(this) || {} : {},
         tpl;
 
     // Validate options for webpack
     (0, _schemaUtils2.default)(schema, options, 'twigtovue-loader');
+
+    // Process to Vue
+    source = _twigtovuejs2.default.convert(source);
 
     //
     _twig2.default.extend(function (Twig) {
@@ -51,8 +54,6 @@ exports.default = function (source, filepath) {
     return tpl;
 };
 
-var _module = require('module');
-
 var _loaderUtils = require('loader-utils');
 
 var _mapcache = require('./mapcache.js');
@@ -75,6 +76,10 @@ var _twig = require('twig');
 
 var _twig2 = _interopRequireDefault(_twig);
 
+var _twigtovuejs = require('twigtovuejs');
+
+var _twigtovuejs2 = _interopRequireDefault(_twigtovuejs);
+
 var _schemaUtils = require('schema-utils');
 
 var _schemaUtils2 = _interopRequireDefault(_schemaUtils);
@@ -86,6 +91,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * This is for webpack options
  */
+
+// import { createRequire } from 'module';
 var schema = {
     properties: {
         extender: {

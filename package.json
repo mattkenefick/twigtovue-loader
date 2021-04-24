@@ -3,7 +3,6 @@
     "version": "0.1.0",
     "description": "Webpack loader for compiling twig.js templates into Vue files",
     "main": "index.js",
-    "type": "module",
     "scripts": {
         "build": "babel lib -d build",
         "test": "mocha -R spec"
