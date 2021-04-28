@@ -24,7 +24,7 @@ describe('convert', function() {
                 if (err) throw err;
 
                 result.should.have.type('string');
-                result.should.match('<p :class="foo">Template</p>');
+                result.should.containEql('<p :class="foo">Template</p>');
 
                 done();
             },
@@ -51,7 +51,7 @@ describe('convert', function() {
             if (err) throw err;
 
             result.should.have.type('string');
-            result.should.match('<p>{{ foo }}</p>');
+            result.should.containEql('<p>{{ foo }}</p>');
 
             done();
         });

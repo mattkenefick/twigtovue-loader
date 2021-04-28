@@ -64,17 +64,17 @@ export default function(source, filepath) {
      * but for now, we should just return Vue source.
      */
 
-    Twig.extend((Twig) => {
-        var compiler = Twig.compiler;
-        compiler.module['webpack'] = compilerFactory(options);
-    });
+    // Twig.extend((Twig) => {
+    //     var compiler = Twig.compiler;
+    //     compiler.module['webpack'] = compilerFactory(options);
+    // });
 
-    // Globally set hash ➔ file
-    // e.g. abdcefg = my-files/template.twig
-    cachedTemplates.set(id, path);
+    // // Globally set hash ➔ file
+    // // e.g. abdcefg = my-files/template.twig
+    // cachedTemplates.set(id, path);
 
-    // Run a cachable call, if exists
-    this.cacheable && this.cacheable();
+    // // Run a cachable call, if exists
+    // this.cacheable && this.cacheable();
 
     // // Instantiate Twig template
     // tpl = Twig.twig({
@@ -90,10 +90,10 @@ export default function(source, filepath) {
     //     twig: 'twig'
     // });
 
+    // Override tpl
+    // tpl = 'module.exports = function(context) { return `' + source + '` }';
+    tpl = 'module.exports = `' + source + '`';
+
     // Send compiled template back
-    this.callback && this.callback(null, source);
-
-    // return tpl;
-
-    return source;
+    this.callback(null, tpl);
 };

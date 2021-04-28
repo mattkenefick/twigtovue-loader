@@ -29,6 +29,7 @@ module.exports = function runLoader(
         loadModule: function(request, callback) {
             request = request.replace(/^-?!+/, '');
             request = request.split('!');
+            console.log('loading module', arguments);
             var content = fs.readFileSync(request.pop(), 'utf-8');
             if (request[0] && /stringify/.test(request[0]))
                 content = JSON.stringify(content);
