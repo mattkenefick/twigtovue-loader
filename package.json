@@ -1,6 +1,6 @@
 {
     "name": "twigtovue-loader",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "description": "Webpack loader for compiling twig.js templates into Vue files",
     "main": "dist/index.js",
     "scripts": {
@@ -20,13 +20,13 @@
         "map-cache": "^0.2.2",
         "schema-utils": "^0.4.5",
         "twig": "~1.15.2",
-        "twigtovuejs": "github:mattkenefick/twigtovuejs",
         "underscore": "^1.11.0"
     },
     "devDependencies": {
         "babel-preset-env": "^1.7.0",
         "mocha": "*",
         "prettier": "^1.19.1",
-        "should": "*"
+        "should": "*",
+        "twigtovuejs": "github:mattkenefick/twigtovuejs"
     }
 }
