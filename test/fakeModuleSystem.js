@@ -37,6 +37,6 @@ module.exports = function runLoader(
     };
 
     var res = loader.call(loaderContext, arg);
-    // if (!async) callback(null, res);
-    callback(null, res);
+    if (!async) callback(null, res);
+    // callback(null, res);
 };

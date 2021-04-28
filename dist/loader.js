@@ -29,18 +29,17 @@ exports.default = function (source, filepath) {
      * but for now, we should just return Vue source.
      */
 
-    //
-    // Twig.extend((Twig) => {
-    //     var compiler = Twig.compiler;
-    //     compiler.module['webpack'] = compilerFactory(options);
-    // });
+    _twig2.default.extend(function (Twig) {
+        var compiler = Twig.compiler;
+        compiler.module['webpack'] = (0, _compiler2.default)(options);
+    });
 
-    // // Globally set hash ➔ file
-    // // e.g. abdcefg = my-files/template.twig
-    // cachedTemplates.set(id, path);
+    // Globally set hash ➔ file
+    // e.g. abdcefg = my-files/template.twig
+    _mapcache2.default.set(id, path);
 
-    // // Run a cachable call, if exists
-    // this.cacheable && this.cacheable();
+    // Run a cachable call, if exists
+    this.cacheable && this.cacheable();
 
     // // Instantiate Twig template
     // tpl = Twig.twig({
@@ -56,8 +55,8 @@ exports.default = function (source, filepath) {
     //     twig: 'twig'
     // });
 
-    // // Send compiled template back
-    // this.callback && this.callback(null, tpl);
+    // Send compiled template back
+    this.callback && this.callback(null, source);
 
     // return tpl;
 
@@ -94,13 +93,9 @@ var _schemaUtils2 = _interopRequireDefault(_schemaUtils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// const require = createRequire(import.meta.url);
-
 /**
  * This is for webpack options
  */
-
-// import { createRequire } from 'module';
 var schema = {
     properties: {
         extender: {

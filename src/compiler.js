@@ -88,11 +88,6 @@ export default function(options) {
             rethrow: true,
         });
 
-        // For testing
-        // var output = [
-        //     JSON.stringify(opts),
-        // ];
-
         var output = [
             'var Twig = require("' + pathToTwig + '"),',
             '    template = Twig.twig(' + JSON.stringify(opts) + ');\n',

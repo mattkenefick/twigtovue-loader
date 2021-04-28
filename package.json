@@ -1,6 +1,6 @@
 {
     "name": "twigtovue-loader",
-    "version": "0.2.0",
+    "version": "0.2.2",
     "description": "Webpack loader for compiling twig.js templates into Vue files",
     "main": "dist/index.js",
     "scripts": {

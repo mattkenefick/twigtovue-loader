@@ -1,5 +1,4 @@
 
-// import { createRequire } from 'module';
 import { getOptions } from 'loader-utils';
 import cachedTemplates from './mapcache.js';
 import compilerFactory from './compiler.js';
@@ -8,8 +7,6 @@ import path from 'path';
 import Twig from 'twig';
 import { Converter } from 'twigtovuejs';
 import validateOptions from 'schema-utils';
-
-// const require = createRequire(import.meta.url);
 
 /**
  * This is for webpack options
@@ -67,18 +64,17 @@ export default function(source, filepath) {
      * but for now, we should just return Vue source.
      */
 
-    //
-    // Twig.extend((Twig) => {
-    //     var compiler = Twig.compiler;
-    //     compiler.module['webpack'] = compilerFactory(options);
-    // });
+    Twig.extend((Twig) => {
+        var compiler = Twig.compiler;
+        compiler.module['webpack'] = compilerFactory(options);
+    });
 
-    // // Globally set hash ➔ file
-    // // e.g. abdcefg = my-files/template.twig
-    // cachedTemplates.set(id, path);
+    // Globally set hash ➔ file
+    // e.g. abdcefg = my-files/template.twig
+    cachedTemplates.set(id, path);
 
-    // // Run a cachable call, if exists
-    // this.cacheable && this.cacheable();
+    // Run a cachable call, if exists
+    this.cacheable && this.cacheable();
 
     // // Instantiate Twig template
     // tpl = Twig.twig({
@@ -94,8 +90,8 @@ export default function(source, filepath) {
     //     twig: 'twig'
     // });
 
-    // // Send compiled template back
-    // this.callback && this.callback(null, tpl);
+    // Send compiled template back
+    this.callback && this.callback(null, source);
 
     // return tpl;
 
