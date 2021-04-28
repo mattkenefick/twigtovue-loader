@@ -19,39 +19,49 @@ exports.default = function (source, filepath) {
     (0, _schemaUtils2.default)(schema, options, 'twigtovue-loader');
 
     // Process to Vue
-    source = _twigtovuejs2.default.convert(source);
+    source = _twigtovuejs.Converter.convert(source);
+
+    /**
+     * Technically for TwigToVue, we don't really want to render
+     * the Twig template. We just want the source as Vue.
+     *
+     * There may be opportunity here to do partial renderings
+     * but for now, we should just return Vue source.
+     */
 
     //
-    _twig2.default.extend(function (Twig) {
-        var compiler = Twig.compiler;
-        compiler.module['webpack'] = (0, _compiler2.default)(options);
-    });
+    // Twig.extend((Twig) => {
+    //     var compiler = Twig.compiler;
+    //     compiler.module['webpack'] = compilerFactory(options);
+    // });
 
-    // Globally set hash ➔ file
-    // e.g. abdcefg = my-files/template.twig
-    _mapcache2.default.set(id, path);
+    // // Globally set hash ➔ file
+    // // e.g. abdcefg = my-files/template.twig
+    // cachedTemplates.set(id, path);
 
-    // Run a cachable call, if exists
-    module && this.cacheable && this.cacheable();
+    // // Run a cachable call, if exists
+    // this.cacheable && this.cacheable();
 
-    // Instantiate Twig template
-    tpl = _twig2.default.twig({
-        allowInlineIncludes: allowInlineIncludes,
-        data: source,
-        id: id,
-        path: path
-    });
+    // // Instantiate Twig template
+    // tpl = Twig.twig({
+    //     allowInlineIncludes,
+    //     data: source,
+    //     id,
+    //     path,
+    // });
 
-    // Compile Twig template
-    tpl = tpl.compile({
-        module: 'webpack',
-        twig: 'twig'
-    });
+    // // Compile Twig template
+    // tpl = tpl.compile({
+    //     module: 'webpack',
+    //     twig: 'twig'
+    // });
 
-    // Send compiled template back
-    module && this.callback && this.callback(null, tpl);
+    // // Send compiled template back
+    // this.callback && this.callback(null, tpl);
 
-    return tpl;
+    // return tpl;
+
+    return source;
 };
 
 var _loaderUtils = require('loader-utils');
@@ -77,8 +87,6 @@ var _twig = require('twig');
 var _twig2 = _interopRequireDefault(_twig);
 
 var _twigtovuejs = require('twigtovuejs');
-
-var _twigtovuejs2 = _interopRequireDefault(_twigtovuejs);
 
 var _schemaUtils = require('schema-utils');
 

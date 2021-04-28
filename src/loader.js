@@ -6,7 +6,7 @@ import compilerFactory from './compiler.js';
 import hashGenerator from 'hasha';
 import path from 'path';
 import Twig from 'twig';
-import twigtovue from 'twigtovuejs';
+import { Converter } from 'twigtovuejs';
 import validateOptions from 'schema-utils';
 
 // const require = createRequire(import.meta.url);
@@ -57,37 +57,47 @@ export default function(source, filepath) {
     validateOptions(schema, options, 'twigtovue-loader');
 
     // Process to Vue
-    source = twigtovue.convert(source);
+    source = Converter.convert(source);
+
+    /**
+     * Technically for TwigToVue, we don't really want to render
+     * the Twig template. We just want the source as Vue.
+     *
+     * There may be opportunity here to do partial renderings
+     * but for now, we should just return Vue source.
+     */
 
     //
-    Twig.extend((Twig) => {
-        var compiler = Twig.compiler;
-        compiler.module['webpack'] = compilerFactory(options);
-    });
+    // Twig.extend((Twig) => {
+    //     var compiler = Twig.compiler;
+    //     compiler.module['webpack'] = compilerFactory(options);
+    // });
 
-    // Globally set hash ➔ file
-    // e.g. abdcefg = my-files/template.twig
-    cachedTemplates.set(id, path);
+    // // Globally set hash ➔ file
+    // // e.g. abdcefg = my-files/template.twig
+    // cachedTemplates.set(id, path);
 
-    // Run a cachable call, if exists
-    module && this.cacheable && this.cacheable();
+    // // Run a cachable call, if exists
+    // this.cacheable && this.cacheable();
 
-    // Instantiate Twig template
-    tpl = Twig.twig({
-        allowInlineIncludes,
-        data: source,
-        id,
-        path,
-    });
+    // // Instantiate Twig template
+    // tpl = Twig.twig({
+    //     allowInlineIncludes,
+    //     data: source,
+    //     id,
+    //     path,
+    // });
 
-    // Compile Twig template
-    tpl = tpl.compile({
-        module: 'webpack',
-        twig: 'twig'
-    });
+    // // Compile Twig template
+    // tpl = tpl.compile({
+    //     module: 'webpack',
+    //     twig: 'twig'
+    // });
 
-    // Send compiled template back
-    module && this.callback && this.callback(null, tpl);
+    // // Send compiled template back
+    // this.callback && this.callback(null, tpl);
 
-    return tpl;
+    // return tpl;
+
+    return source;
 };
