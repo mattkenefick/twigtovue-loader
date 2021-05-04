@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports["default"] = void 0;
 
-var _mapCache = require('map-cache');
+var _mapCache = _interopRequireDefault(require("map-cache"));
 
-var _mapCache2 = _interopRequireDefault(_mapCache);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _default = new _mapCache["default"]();
 
-exports.default = new _mapCache2.default();
+exports["default"] = _default;

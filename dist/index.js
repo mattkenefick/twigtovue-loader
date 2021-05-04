@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports["default"] = void 0;
 
-var _loader = require('./loader');
+var _loader = _interopRequireDefault(require("./loader"));
 
-var _loader2 = _interopRequireDefault(_loader);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _loader2.default;
+var _default = _loader["default"];
+exports["default"] = _default;
